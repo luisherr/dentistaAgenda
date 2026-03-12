@@ -33,9 +33,11 @@ export default function NuevaCita() {
     if (!form.hora) errs.hora = 'La hora es requerida';
     if (!form.tratamiento.trim()) errs.tratamiento = 'El tratamiento es requerido';
 
-    if (form.fecha && form.hora) {
-      const fechaHora = new Date(`${form.fecha}T${form.hora}`);
-      if (fechaHora <= new Date()) errs.fecha = 'La fecha debe ser futura';
+    if (form.fecha) {
+      const hoy = new Date();
+      const fechaSel = new Date(form.fecha + 'T00:00:00');
+      const hoySinHora = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+      if (fechaSel < hoySinHora) errs.fecha = 'La fecha no puede ser anterior a hoy';
     }
 
     setErrors(errs);
@@ -48,6 +50,23 @@ export default function NuevaCita() {
     setLoading(true);
     try {
       const fechaHora = `${form.fecha}T${form.hora}:00`;
+      const nuevaHora = new Date(fechaHora).getTime();
+
+      // Verificar conflicto de horario (±30 min)
+      const { data: citasDelDia } = await api.get('/citas', {
+        params: { idDentista: user.idDentista, fecha: form.fecha },
+      });
+      const conflicto = (Array.isArray(citasDelDia) ? citasDelDia : []).find((c) => {
+        if (Number(c.estado) === 2) return false; // ignorar canceladas
+        const citaHora = new Date(c.fechaHora).getTime();
+        return Math.abs(citaHora - nuevaHora) < 30 * 60 * 1000;
+      });
+      if (conflicto) {
+        toast.error('Ya existe una cita en ese horario o dentro de los 30 minutos');
+        setLoading(false);
+        return;
+      }
+
       await api.post('/citas', {
         idPaciente: parseInt(form.idPaciente),
         idDentista: user.idDentista,

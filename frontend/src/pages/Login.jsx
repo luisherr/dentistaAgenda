@@ -44,7 +44,7 @@ export default function Login() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="text-5xl mb-4">🦷</div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">AgendaDentista</h1>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">DentAssist</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">Gestiona tu consultorio fácilmente</p>
         </div>
 

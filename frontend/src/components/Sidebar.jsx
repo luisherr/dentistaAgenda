@@ -20,7 +20,7 @@ export default function Sidebar() {
     <>
       <div className="p-6 border-b border-slate-700">
         <h1 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">🦷</span> AgendaDentista
+          <span className="text-2xl">🦷</span> DentAssist
         </h1>
       </div>
       <nav className="flex-1 p-4 space-y-1">

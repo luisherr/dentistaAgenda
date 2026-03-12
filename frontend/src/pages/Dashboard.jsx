@@ -54,9 +54,9 @@ export default function Dashboard() {
     catch { toast.error('Error al revertir'); }
   };
 
-  const confirmadas = citasHoy.filter((c) => c.estado === 1).length;
-  const pendientes = citasHoy.filter((c) => c.estado === 0).length;
-  const canceladas = citasHoy.filter((c) => c.estado === 2).length;
+  const confirmadas = citasHoy.filter((c) => Number(c.estado) === 1).length;
+  const pendientes = citasHoy.filter((c) => Number(c.estado) === 0).length;
+  const canceladas = citasHoy.filter((c) => Number(c.estado) === 2).length;
 
   const proximasCitas = todasCitas
     .filter((c) => new Date(c.fechaHora) > new Date() && c.estado !== 2)
