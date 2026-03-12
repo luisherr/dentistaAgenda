@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create vite@latest frontend -- --template react)",
+      "Bash(npm install)",
+      "Bash(npm install react-router-dom axios date-fns react-hot-toast lucide-react)",
+      "Bash(npm install -D tailwindcss @tailwindcss/vite)",
+      "Bash(npx vite build)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where npx)",
+      "Bash(where node)",
+      "Bash(ls \"C:\\\\Users\\\\luis3\\\\OneDrive\\\\Documents\\\\INTERFAZDentista/frontend/node_modules/.bin/vite\"*)",
+      "Bash(taskkill //PID 22904 //F)",
+      "Bash(taskkill //PID 39588 //F)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Bash(npx vercel --version)",
+      "Bash(npx vercel --yes --prod)",
+      "Bash(npx vercel login)",
+      "Bash(ngrok version)",
+      "Bash(curl -s -L -o \"C:\\\\Users\\\\luis3\\\\AppData\\\\Local\\\\Temp\\\\ngrok.zip\" https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip)",
+      "Bash(\"C:\\\\Users\\\\luis3\\\\AppData\\\\Local\\\\Programs\\\\ngrok\\\\ngrok.exe\" version)",
+      "Bash(\"C:\\\\Users\\\\luis3\\\\AppData\\\\Local\\\\Programs\\\\ngrok\\\\ngrok.exe\" config add-authtoken ER5SSBVZLHI64SPVKDNFVJ6TZAQ4NW7I)",
+      "Bash(curl -s http://localhost:4040/api/tunnels)",
+      "Bash(python -m json.tool)",
+      "Bash(dotnet build)",
+      "Bash(find C:Usersluis3OneDriveDocumentsINTERFAZDentista -type f \\\\\\(-name *.sln -o -name *.csproj -o -name Dockerfile -o -name docker-compose.yml -o -name docker-compose.yaml -o -name Program.cs -o -name Startup.cs -o -name appsettings.json -o -name appsettings*.json \\\\\\))",
+      "Bash(find C:Usersluis3OneDriveDocumentsINTERFAZDentista -type d -name *backend* -o -type d -name *api* -o -type d -name *server*)",
+      "Bash(find C:Usersluis3OneDriveDocumentsDentistaAgenda -name Extensiones.cs -o -name *Extensiones*)"
+    ]
+  }
+}
