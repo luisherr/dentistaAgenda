@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, CalendarDays, LayoutGrid } from 'lucide-reac
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import CitaCard from '../components/CitaCard';
+import EditarCitaModal from '../components/EditarCitaModal';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 import { useAuth } from '../context/AuthContext';
@@ -27,6 +28,7 @@ export default function Agenda() {
   const [citasDia, setCitasDia] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingDia, setLoadingDia] = useState(false);
+  const [citaEditando, setCitaEditando] = useState(null);
 
   const fetchCitasMes = async () => {
     setLoading(true);
@@ -296,6 +298,7 @@ export default function Agenda() {
                       onCancelar={cancelar}
                       onAtender={atender}
                       onRevertir={revertir}
+                      onEditar={setCitaEditando}
                     />
                   ))}
                 </div>
@@ -303,6 +306,14 @@ export default function Agenda() {
             </div>
           </div>
         </div>
+      )}
+
+      {citaEditando && (
+        <EditarCitaModal
+          cita={citaEditando}
+          onClose={() => setCitaEditando(null)}
+          onGuardado={refrescar}
+        />
       )}
     </Layout>
   );

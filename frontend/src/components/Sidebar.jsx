@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Users, CalendarPlus, CalendarDays, LogOut, Menu, X, Moon, Sun } from 'lucide-react';
+import { LayoutDashboard, Users, CalendarPlus, CalendarDays, Crown, UserCircle, LogOut, Menu, X, Moon, Sun } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -9,6 +9,8 @@ const links = [
   { to: '/pacientes', label: 'Pacientes', icon: Users },
   { to: '/agenda', label: 'Agenda', icon: CalendarDays },
   { to: '/citas/nueva', label: 'Nueva Cita', icon: CalendarPlus },
+  { to: '/perfil', label: 'Mi Perfil', icon: UserCircle },
+  { to: '/suscripcion', label: 'Suscripcion', icon: Crown },
 ];
 
 export default function Sidebar() {

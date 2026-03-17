@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { UserPlus, Search, Trash2, AlertTriangle } from 'lucide-react';
+import { UserPlus, Search, Trash2, Pencil, AlertTriangle } from 'lucide-react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -18,6 +18,7 @@ export default function Pacientes() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const [pacienteEditando, setPacienteEditando] = useState(null);
   const [form, setForm] = useState({ nombre: '', telefono: '', email: '' });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -49,19 +50,47 @@ export default function Pacientes() {
     return Object.keys(errs).length === 0;
   };
 
-  const handleCreate = async (e) => {
+  const abrirCrear = () => {
+    setPacienteEditando(null);
+    setForm({ nombre: '', telefono: '', email: '' });
+    setErrors({});
+    setModalOpen(true);
+  };
+
+  const abrirEditar = (p) => {
+    setPacienteEditando(p);
+    setForm({ nombre: p.nombre, telefono: p.telefono, email: p.email || '' });
+    setErrors({});
+    setModalOpen(true);
+  };
+
+  const cerrarModal = () => {
+    setModalOpen(false);
+    setPacienteEditando(null);
+    setForm({ nombre: '', telefono: '', email: '' });
+    setErrors({});
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
     setSaving(true);
     try {
-      await api.post('/pacientes', { ...form, idDentista: user.idDentista });
-      toast.success('Paciente creado');
-      setModalOpen(false);
-      setForm({ nombre: '', telefono: '', email: '' });
-      setErrors({});
+      if (pacienteEditando) {
+        await api.put(`/pacientes/${pacienteEditando.idPaciente}`, {
+          nombre: form.nombre,
+          telefono: form.telefono,
+          email: form.email || null,
+        });
+        toast.success('Paciente actualizado');
+      } else {
+        await api.post('/pacientes', { ...form, idDentista: user.idDentista });
+        toast.success('Paciente creado');
+      }
+      cerrarModal();
       fetchPacientes();
     } catch (err) {
-      toast.error(err.response?.data?.error || 'Error al crear paciente');
+      toast.error(err.response?.data?.error || `Error al ${pacienteEditando ? 'actualizar' : 'crear'} paciente`);
     } finally {
       setSaving(false);
     }
@@ -95,7 +124,7 @@ export default function Pacientes() {
             className="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-dark-border rounded-lg text-sm bg-white dark:bg-dark-card text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-slate-400 dark:placeholder:text-slate-500"
           />
         </div>
-        <Button onClick={() => setModalOpen(true)}>
+        <Button onClick={abrirCrear}>
           <UserPlus className="w-4 h-4" />
           Nuevo paciente
         </Button>
@@ -107,7 +136,7 @@ export default function Pacientes() {
         <EmptyState
           message={search ? 'No se encontraron pacientes' : 'Aún no tienes pacientes'}
           actionLabel={!search ? 'Agregar paciente' : undefined}
-          onAction={!search ? () => setModalOpen(true) : undefined}
+          onAction={!search ? abrirCrear : undefined}
         />
       ) : (
         <>
@@ -120,7 +149,7 @@ export default function Pacientes() {
                   <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Teléfono</th>
                   <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Email</th>
                   <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Registro</th>
-                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase w-16"></th>
+                  <th className="px-6 py-3 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase w-24"></th>
                 </tr>
               </thead>
               <tbody>
@@ -133,13 +162,22 @@ export default function Pacientes() {
                       {format(parseISO(p.fechaRegistro), 'dd/MM/yyyy')}
                     </td>
                     <td className="px-6 py-4">
-                      <button
-                        onClick={() => setDeleteModal({ open: true, paciente: p })}
-                        className="p-1.5 text-slate-400 hover:text-danger hover:bg-danger-light dark:hover:bg-danger/20 rounded-lg transition-colors"
-                        title="Eliminar paciente"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={() => abrirEditar(p)}
+                          className="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                          title="Editar paciente"
+                        >
+                          <Pencil className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => setDeleteModal({ open: true, paciente: p })}
+                          className="p-1.5 text-slate-400 hover:text-danger hover:bg-danger-light dark:hover:bg-danger/20 rounded-lg transition-colors"
+                          title="Eliminar paciente"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -160,13 +198,22 @@ export default function Pacientes() {
                       Registro: {format(parseISO(p.fechaRegistro), 'dd/MM/yyyy')}
                     </p>
                   </div>
-                  <button
-                    onClick={() => setDeleteModal({ open: true, paciente: p })}
-                    className="p-1.5 text-slate-400 hover:text-danger hover:bg-danger-light dark:hover:bg-danger/20 rounded-lg transition-colors flex-shrink-0"
-                    title="Eliminar paciente"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    <button
+                      onClick={() => abrirEditar(p)}
+                      className="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                      title="Editar paciente"
+                    >
+                      <Pencil className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => setDeleteModal({ open: true, paciente: p })}
+                      className="p-1.5 text-slate-400 hover:text-danger hover:bg-danger-light dark:hover:bg-danger/20 rounded-lg transition-colors"
+                      title="Eliminar paciente"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -174,9 +221,9 @@ export default function Pacientes() {
         </>
       )}
 
-      {/* Modal crear paciente */}
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title="Nuevo paciente">
-        <form onSubmit={handleCreate} className="space-y-4">
+      {/* Modal crear/editar paciente */}
+      <Modal isOpen={modalOpen} onClose={cerrarModal} title={pacienteEditando ? 'Editar paciente' : 'Nuevo paciente'}>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             label="Nombre completo"
             placeholder="Juan Pérez"
@@ -199,11 +246,11 @@ export default function Pacientes() {
             onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
           <div className="flex gap-3 justify-end pt-2">
-            <Button variant="outline" type="button" onClick={() => setModalOpen(false)}>
+            <Button variant="outline" type="button" onClick={cerrarModal}>
               Cancelar
             </Button>
             <Button type="submit" loading={saving}>
-              Guardar
+              {pacienteEditando ? 'Guardar cambios' : 'Guardar'}
             </Button>
           </div>
         </form>

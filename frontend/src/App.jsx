@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard';
 import Pacientes from './pages/Pacientes';
 import NuevaCita from './pages/NuevaCita';
 import Agenda from './pages/Agenda';
+import Suscripcion from './pages/Suscripcion';
+import Perfil from './pages/Perfil';
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
             <Route path="/pacientes" element={<Pacientes />} />
             <Route path="/citas/nueva" element={<NuevaCita />} />
             <Route path="/agenda" element={<Agenda />} />
+            <Route path="/suscripcion" element={<Suscripcion />} />
+            <Route path="/perfil" element={<Perfil />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
