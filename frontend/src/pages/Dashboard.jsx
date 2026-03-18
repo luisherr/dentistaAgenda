@@ -7,14 +7,12 @@ import CitaCard from '../components/CitaCard';
 import LoadingSpinner from '../components/LoadingSpinner';
 import EmptyState from '../components/EmptyState';
 import { useAuth } from '../context/AuthContext';
-import { useSubscription } from '../hooks/useSubscription';
 import { getGreeting, formatFechaCompleta, formatFechaInput } from '../utils/formatters';
 import api from '../api/axios';
 import toast from 'react-hot-toast';
 
 export default function Dashboard() {
   const { user } = useAuth();
-  const { enTrial, diasRestantes } = useSubscription();
   const navigate = useNavigate();
   const [citasHoy, setCitasHoy] = useState([]);
   const [todasCitas, setTodasCitas] = useState([]);
@@ -73,15 +71,6 @@ export default function Dashboard() {
         </h1>
         <p className="text-slate-500 dark:text-slate-400 capitalize">{formatFechaCompleta(new Date().toISOString())}</p>
       </div>
-
-      {enTrial && (
-        <div className="mb-6 p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
-          <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
-            Periodo de prueba gratuito — Te {diasRestantes === 1 ? 'queda' : 'quedan'} <span className="font-bold">{diasRestantes} {diasRestantes === 1 ? 'día' : 'días'}</span> de prueba.
-            <a href="/suscripcion" className="ml-2 underline hover:no-underline">Suscríbete ahora</a>
-          </p>
-        </div>
-      )}
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
         <StatsCard icon={CalendarDays} label="Citas hoy" value={citasHoy.length} color="primary" />

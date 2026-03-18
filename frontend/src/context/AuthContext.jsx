@@ -13,12 +13,10 @@ export function AuthProvider({ children }) {
     const nombre = localStorage.getItem('nombre');
     const email = localStorage.getItem('email');
     const suscripcionActiva = localStorage.getItem('suscripcionActiva') === 'true';
-    const fechaRegistro = localStorage.getItem('fechaRegistro');
-    const enTrial = localStorage.getItem('enTrial') === 'true';
-    const diasRestantesTrial = parseInt(localStorage.getItem('diasRestantesTrial') || '0');
+    const fechaFinSuscripcion = localStorage.getItem('fechaFinSuscripcion');
 
     if (token && idDentista) {
-      setUser({ token, idDentista: parseInt(idDentista), nombre, email, suscripcionActiva, fechaRegistro, enTrial, diasRestantesTrial });
+      setUser({ token, idDentista: parseInt(idDentista), nombre, email, suscripcionActiva, fechaFinSuscripcion });
     }
     setLoading(false);
   }, []);
@@ -29,9 +27,7 @@ export function AuthProvider({ children }) {
     localStorage.setItem('nombre', data.nombre);
     localStorage.setItem('email', data.email);
     localStorage.setItem('suscripcionActiva', data.suscripcionActiva);
-    localStorage.setItem('fechaRegistro', data.fechaRegistro);
-    localStorage.setItem('enTrial', data.enTrial);
-    localStorage.setItem('diasRestantesTrial', data.diasRestantesTrial);
+    localStorage.setItem('fechaFinSuscripcion', data.fechaFinSuscripcion || '');
     setUser(data);
   };
 
@@ -50,8 +46,7 @@ export function AuthProvider({ children }) {
   const actualizarSuscripcion = (suscripcionData) => {
     const updated = { ...user, ...suscripcionData };
     localStorage.setItem('suscripcionActiva', updated.suscripcionActiva);
-    localStorage.setItem('enTrial', updated.enTrial);
-    localStorage.setItem('diasRestantesTrial', updated.diasRestantesTrial);
+    localStorage.setItem('fechaFinSuscripcion', updated.fechaFinSuscripcion || '');
     setUser(updated);
   };
 
@@ -61,9 +56,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('nombre');
     localStorage.removeItem('email');
     localStorage.removeItem('suscripcionActiva');
-    localStorage.removeItem('fechaRegistro');
-    localStorage.removeItem('enTrial');
-    localStorage.removeItem('diasRestantesTrial');
+    localStorage.removeItem('fechaFinSuscripcion');
     setUser(null);
   };
 
