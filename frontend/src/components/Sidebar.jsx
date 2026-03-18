@@ -21,9 +21,16 @@ export default function Sidebar() {
   const navContent = (
     <>
       <div className="p-6 border-b border-slate-700">
-        <h1 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">🦷</span> DentAssist
-        </h1>
+        <div className="flex items-center gap-2.5">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 flex-shrink-0">
+            <rect width="40" height="40" rx="12" fill="#3D7B6F"/>
+            <path d="M12 14C12 14 14 10 20 10C26 10 28 14 28 14" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
+            <path d="M13 16L15 26C15.5 28.5 17 30 20 30C23 30 24.5 28.5 25 26L27 16" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="20" cy="19" r="2" fill="white" opacity="0.6"/>
+            <path d="M17 22.5C17 22.5 18.5 24 20 24C21.5 24 23 22.5 23 22.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
+          <span className="text-xl tracking-tight" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>DentAssist</span>
+        </div>
       </div>
       <nav className="flex-1 p-4 space-y-1">
         {links.map(({ to, label, icon: Icon }) => (

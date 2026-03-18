@@ -43,8 +43,16 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-white dark:from-dark-bg dark:to-neutral-900 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="text-5xl mb-4">🦷</div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">DentAssist</h1>
+          <div className="flex justify-center mb-4">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-14 h-14">
+              <rect width="40" height="40" rx="12" fill="#3D7B6F"/>
+              <path d="M12 14C12 14 14 10 20 10C26 10 28 14 28 14" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
+              <path d="M13 16L15 26C15.5 28.5 17 30 20 30C23 30 24.5 28.5 25 26L27 16" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="20" cy="19" r="2" fill="white" opacity="0.6"/>
+              <path d="M17 22.5C17 22.5 18.5 24 20 24C21.5 24 23 22.5 23 22.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <h1 className="text-2xl text-slate-900 dark:text-white" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>DentAssist</h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1">Gestiona tu consultorio fácilmente</p>
         </div>
 
