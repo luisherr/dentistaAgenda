@@ -40,7 +40,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-50 to-white dark:from-dark-bg dark:to-neutral-900 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-light to-background dark:from-dark-bg dark:to-neutral-900 p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">

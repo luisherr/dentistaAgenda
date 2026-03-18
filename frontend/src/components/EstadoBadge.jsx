@@ -4,7 +4,7 @@ const colorClasses = {
   warning: 'bg-warning-light text-amber-800',
   secondary: 'bg-secondary-light text-emerald-800',
   danger: 'bg-danger-light text-red-800',
-  primary: 'bg-primary-light text-sky-800',
+  primary: 'bg-primary-light text-emerald-900',
 };
 
 export default function EstadoBadge({ estado }) {

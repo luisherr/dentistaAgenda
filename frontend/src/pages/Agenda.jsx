@@ -190,7 +190,7 @@ export default function Agenda() {
                       <button
                         key={i}
                         onClick={() => { setFechaSeleccionada(dia); }}
-                        className={`min-h-[50px] sm:min-h-[85px] p-1 sm:p-1.5 border-b border-r border-slate-100 dark:border-dark-border text-left transition-colors hover:bg-sky-50 dark:hover:bg-sky-900/20
+                        className={`min-h-[50px] sm:min-h-[85px] p-1 sm:p-1.5 border-b border-r border-slate-100 dark:border-dark-border text-left transition-colors hover:bg-primary-light dark:hover:bg-primary/5
                           ${!esMes ? 'bg-slate-50/50 dark:bg-neutral-900/30' : ''}
                           ${esSel ? 'bg-primary-light dark:bg-primary/10 ring-2 ring-primary ring-inset' : ''}`}
                       >
@@ -235,7 +235,7 @@ export default function Agenda() {
                     <button
                       key={i}
                       onClick={() => setFechaSeleccionada(dia)}
-                      className={`px-1 sm:px-2 py-2 sm:py-3 text-center transition-colors hover:bg-sky-50 dark:hover:bg-sky-900/20 ${isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light dark:bg-primary/10' : ''}`}
+                      className={`px-1 sm:px-2 py-2 sm:py-3 text-center transition-colors hover:bg-primary-light dark:hover:bg-primary/5 ${isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light dark:bg-primary/10' : ''}`}
                     >
                       <div className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">
                         {format(dia, 'EEE', { locale: es })}
@@ -251,7 +251,7 @@ export default function Agenda() {
                   {diasSemana.map((dia, i) => {
                     const citasDel = getCitasDiaCalendario(dia);
                     return (
-                      <div key={i} className={`border-r border-slate-100 dark:border-dark-border p-1 sm:p-1.5 ${isSameDay(dia, fechaSeleccionada) ? 'bg-sky-50/50 dark:bg-sky-950/10' : ''}`}>
+                      <div key={i} className={`border-r border-slate-100 dark:border-dark-border p-1 sm:p-1.5 ${isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light/50 dark:bg-primary/5' : ''}`}>
                         {citasDel.length === 0 ? (
                           <div className="text-[9px] sm:text-[10px] text-slate-300 dark:text-slate-600 text-center mt-4">Sin citas</div>
                         ) : (

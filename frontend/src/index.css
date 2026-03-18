@@ -1,29 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
-  --color-primary: #0EA5E9;
-  --color-primary-dark: #0284C7;
-  --color-primary-light: #E0F2FE;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --color-primary: #3D7B6F;
+  --color-primary-dark: #2C5E54;
+  --color-primary-light: #E8F0ED;
   --color-secondary: #10B981;
   --color-secondary-light: #D1FAE5;
-  --color-danger: #EF4444;
-  --color-danger-light: #FEE2E2;
-  --color-warning: #F59E0B;
-  --color-warning-light: #FEF3C7;
-  --color-sidebar: #0F172A;
-  --color-background: #F8FAFC;
-  --color-dark-bg: #111111;
-  --color-dark-card: #1a1a1a;
-  --color-dark-border: #2a2a2a;
+  --color-danger: #DC4A3A;
+  --color-danger-light: #FEE8E5;
+  --color-warning: #C9A84C;
+  --color-warning-light: #FDF6E3;
+  --color-sidebar: #1A2B26;
+  --color-background: #FAF7F2;
+  --color-dark-bg: #0F1512;
+  --color-dark-card: #1A201D;
+  --color-dark-border: #2A332E;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #F8FAFC;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  background-color: #FAF7F2;
   margin: 0;
 }
 
