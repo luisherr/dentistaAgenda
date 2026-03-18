@@ -12,7 +12,7 @@ const planes = [
   {
     nombre: 'Basico',
     descripcion: 'Para dentistas independientes',
-    precio: '499',
+    precio: '399',
     beneficios: [
       '1 dentista',
       'Hasta 100 pacientes',
@@ -25,7 +25,7 @@ const planes = [
   {
     nombre: 'Profesional',
     descripcion: 'Para clinicas en crecimiento',
-    precio: '899',
+    precio: '699',
     beneficios: [
       'Hasta 3 dentistas',
       'Pacientes ilimitados',
