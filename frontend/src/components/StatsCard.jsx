@@ -1,8 +1,8 @@
 const bgColors = {
-  primary: 'bg-primary-light dark:bg-primary/20',
-  secondary: 'bg-secondary-light dark:bg-secondary/20',
-  warning: 'bg-warning-light dark:bg-warning/20',
-  danger: 'bg-danger-light dark:bg-danger/20',
+  primary: 'bg-primary-light dark:bg-neutral-800',
+  secondary: 'bg-secondary-light dark:bg-neutral-800',
+  warning: 'bg-warning-light dark:bg-neutral-800',
+  danger: 'bg-danger-light dark:bg-neutral-800',
 };
 
 const iconColors = {

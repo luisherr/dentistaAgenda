@@ -162,7 +162,7 @@ export default function Suscripcion() {
                 </ul>
               </div>
 
-              <div className="p-4 rounded-lg bg-primary/5 dark:bg-primary/10 border border-primary/20">
+              <div className="p-4 rounded-lg bg-primary/5 dark:bg-neutral-800 border border-primary/20 dark:border-neutral-700">
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>

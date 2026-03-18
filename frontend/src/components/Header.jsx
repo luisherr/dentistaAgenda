@@ -7,7 +7,7 @@ export default function Header({ title }) {
     <header className="bg-white dark:bg-dark-card border-b border-slate-200 dark:border-dark-border pl-14 pr-4 lg:px-8 py-4 flex items-center justify-between">
       <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{title}</h2>
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-primary-light dark:bg-primary/20 flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full bg-primary-light dark:bg-neutral-800 flex items-center justify-center">
           <span className="text-sm font-semibold text-primary">
             {user?.nombre?.charAt(0)?.toUpperCase() || 'D'}
           </span>

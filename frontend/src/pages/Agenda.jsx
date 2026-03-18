@@ -190,9 +190,9 @@ export default function Agenda() {
                       <button
                         key={i}
                         onClick={() => { setFechaSeleccionada(dia); }}
-                        className={`min-h-[50px] sm:min-h-[85px] p-1 sm:p-1.5 border-b border-r border-slate-100 dark:border-dark-border text-left transition-colors hover:bg-primary-light dark:hover:bg-primary/5
+                        className={`min-h-[50px] sm:min-h-[85px] p-1 sm:p-1.5 border-b border-r border-slate-100 dark:border-dark-border text-left transition-colors hover:bg-primary-light dark:hover:bg-neutral-800
                           ${!esMes ? 'bg-slate-50/50 dark:bg-neutral-900/30' : ''}
-                          ${esSel ? 'bg-primary-light dark:bg-primary/10 ring-2 ring-primary ring-inset' : ''}`}
+                          ${esSel ? 'bg-primary-light dark:bg-neutral-800 ring-2 ring-primary ring-inset' : ''}`}
                       >
                         <div className={`text-xs sm:text-sm font-medium mb-0.5 sm:mb-1 w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full
                           ${esHoy ? 'bg-primary text-white' : !esMes ? 'text-slate-300 dark:text-slate-600' : 'text-slate-700 dark:text-slate-300'}`}>
@@ -235,13 +235,13 @@ export default function Agenda() {
                     <button
                       key={i}
                       onClick={() => setFechaSeleccionada(dia)}
-                      className={`px-1 sm:px-2 py-2 sm:py-3 text-center transition-colors hover:bg-primary-light dark:hover:bg-primary/5 ${isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light dark:bg-primary/10' : ''}`}
+                      className={`px-1 sm:px-2 py-2 sm:py-3 text-center transition-colors hover:bg-primary-light dark:hover:bg-neutral-800 ${isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light dark:bg-neutral-800' : ''}`}
                     >
                       <div className="text-[10px] sm:text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">
                         {format(dia, 'EEE', { locale: es })}
                       </div>
                       <div className={`text-sm sm:text-lg font-bold mt-0.5 w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full mx-auto
-                        ${isToday(dia) ? 'bg-primary text-white' : isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light dark:bg-primary/20 text-primary' : 'text-slate-700 dark:text-slate-300'}`}>
+                        ${isToday(dia) ? 'bg-primary text-white' : isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light dark:bg-neutral-700 text-primary' : 'text-slate-700 dark:text-slate-300'}`}>
                         {format(dia, 'd')}
                       </div>
                     </button>
@@ -251,7 +251,7 @@ export default function Agenda() {
                   {diasSemana.map((dia, i) => {
                     const citasDel = getCitasDiaCalendario(dia);
                     return (
-                      <div key={i} className={`border-r border-slate-100 dark:border-dark-border p-1 sm:p-1.5 ${isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light/50 dark:bg-primary/5' : ''}`}>
+                      <div key={i} className={`border-r border-slate-100 dark:border-dark-border p-1 sm:p-1.5 ${isSameDay(dia, fechaSeleccionada) ? 'bg-primary-light/50 dark:bg-neutral-800/50' : ''}`}>
                         {citasDel.length === 0 ? (
                           <div className="text-[9px] sm:text-[10px] text-slate-300 dark:text-slate-600 text-center mt-4">Sin citas</div>
                         ) : (

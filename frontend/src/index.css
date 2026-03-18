@@ -16,9 +16,9 @@
   --color-warning-light: #FDF6E3;
   --color-sidebar: #1A2B26;
   --color-background: #FAF7F2;
-  --color-dark-bg: #0F1512;
-  --color-dark-card: #1A201D;
-  --color-dark-border: #2A332E;
+  --color-dark-bg: #111111;
+  --color-dark-card: #1a1a1a;
+  --color-dark-border: #2a2a2a;
 }
 
 body {
