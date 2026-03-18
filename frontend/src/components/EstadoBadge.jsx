@@ -1,7 +1,7 @@
 import { ESTADOS } from '../utils/formatters';
 
 const colorClasses = {
-  warning: 'bg-warning-light text-orange-800 dark:bg-orange-900/20 dark:text-orange-300',
+  warning: 'bg-warning-light text-amber-900 dark:bg-amber-900/20 dark:text-amber-300',
   secondary: 'bg-secondary-light text-blue-800 dark:bg-blue-900/20 dark:text-blue-300',
   danger: 'bg-danger-light text-red-800 dark:bg-red-900/20 dark:text-red-300',
   primary: 'bg-primary-light text-emerald-900 dark:bg-emerald-900/20 dark:text-emerald-300',
